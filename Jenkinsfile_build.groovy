@@ -20,6 +20,7 @@ pipeline{
         stage("upload"){
             steps {
                 println "Here We will update artifacts to S3 buckets"
+                sh "aws s3 cp target/hello-*.war s3://devops09art"
             }
         }
         stage("deploy"){
