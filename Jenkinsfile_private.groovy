@@ -19,6 +19,8 @@ pipeline {
         stage("artifacts-upload"){
             steps{
                 println "upload artifacts to s3"
+                sh "ls -lart"
+                sh "aws s3 cp target/hello-*.war s3://devops09art"
             }
         }
     }
