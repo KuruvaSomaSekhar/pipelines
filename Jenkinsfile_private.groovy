@@ -13,6 +13,7 @@ pipeline {
         stage("build"){
             steps{
                 println "Here we build our code"
+                sh "mvn clean package"
             }
         }
         stage("artifacts-upload"){
