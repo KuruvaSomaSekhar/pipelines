@@ -14,8 +14,14 @@ pipeline {
         stage("clone"){
             steps {
                 println "Here we download source code from the private repo"
-                checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'git-auth2', url: 'https://github.com/KuruvaSomaSekhar/privatecode.git']]])
-                sh "ls -lart ./*"
+                checkout([$class: 'GitSCM', branches: [[name: ${codebranch}]], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'git-auth2', url: 'https://github.com/KuruvaSomaSekhar/privatecode.git']]])
+                sh """ls -lart ./*
+                    echo  ${env. JOB_NAME} 
+                    echo ${codebranch}
+                    echo ${BUILD_NUMBER}
+
+                    
+                    """
         
             }
         }
