@@ -1,6 +1,15 @@
 //declarative pipelines
 pipeline {
     agent any
+    parameters {
+        // Define string parameter.
+        string (
+            name: 'codebranch',
+            defaultValue: '*/dev',
+            description: '{Provide your source code branch}'
+        )
+
+    }
     stages {
         stage("clone"){
             steps {
